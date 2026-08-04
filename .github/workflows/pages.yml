@@ -26,6 +26,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - name: Add transform preview
         run: cp artifacts/qa/macos-exhaustive/transform-previews.png site/transform-previews.png
       - uses: actions/upload-pages-artifact@v3
