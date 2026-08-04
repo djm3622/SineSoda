@@ -26,7 +26,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - name: Configure release
+      - name: Configure macOS release
+        if: runner.os == 'macOS'
         shell: bash
         run: >-
           cmake -S . -B build/release -G Ninja
@@ -35,16 +36,27 @@ jobs:
           -DSINESODA_BUILD_PLUGIN=ON
           -DSINESODA_BUILD_TESTS=ON
           -DSINESODA_BUILD_BENCHMARKS=OFF
+      - name: Configure Windows release
+        if: runner.os == 'Windows'
+        shell: bash
+        run: >-
+          cmake -S . -B build/release -G "Visual Studio 17 2022" -A x64
+          -DSINESODA_UNIVERSAL_MACOS=OFF
+          -DSINESODA_BUILD_PLUGIN=ON
+          -DSINESODA_BUILD_TESTS=ON
+          -DSINESODA_BUILD_BENCHMARKS=OFF
       - name: Build and test
         shell: bash
         run: |
-          cmake --build build/release --target SineSoda-vst3 SineSodaTests
-          ctest --test-dir build/release --output-on-failure
+          cmake --build build/release --config Release --target SineSoda-vst3 SineSodaTests
+          ctest --test-dir build/release -C Release --output-on-failure
       - name: Package VST3
         shell: bash
         run: |
+          plugin_path="$(find build/release/out -type d -name SineSoda.vst3 -print -quit)"
+          test -n "$plugin_path"
           cmake -E make_directory package
-          cmake -E copy_directory build/release/out/SineSoda.vst3 package/SineSoda.vst3
+          cmake -E copy_directory "$plugin_path" package/SineSoda.vst3
           cmake -E copy LICENSE package/LICENSE.txt
           cmake -E copy docs/INSTALL.md package/INSTALL.md
           cmake -E chdir package cmake -E tar cf "../${{ matrix.archive }}" --format=zip SineSoda.vst3 LICENSE.txt INSTALL.md
