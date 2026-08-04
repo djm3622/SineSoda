@@ -25,6 +25,10 @@ option(SINESODA_ENABLE_SANITIZERS "Enable address and undefined-behavior sanitiz
 option(SINESODA_DEPLOY_PLUGIN "Copy the built plug-in to the per-user VST3 directory" OFF)
 option(SINESODA_ADHOC_SIGN_MACOS "Ad-hoc sign local macOS plug-in builds" ON)
 
+if(MSVC)
+  set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+endif()
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
