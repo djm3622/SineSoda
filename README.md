@@ -1,9 +1,15 @@
 # SineSoda
 
-SineSoda is a resizable, real-time VST3 time-frequency analyzer for macOS and
-Windows. It is designed as a modern, extensible alternative to the spectrogram
-view in FL Studio's Wave Candy: audio passes through unchanged while a worker
-thread computes one of 15 spectral or time-frequency representations.
+SineSoda is a free, open-source VST3 plug-in for exploring time-frequency
+analysis on live audio. It gives researchers, engineers, educators, and curious
+listeners a shared interface for comparing 15 spectral and time-frequency
+representations while the audio passes through unchanged.
+
+The project is intended to be useful beyond a single production workflow. It
+can help with choosing a representation for an analysis pipeline, investigating
+an unfamiliar signal, demonstrating time-frequency trade-offs, or testing a new
+idea against an existing method. The implementation, algorithm notes, tests,
+and build configuration are open for inspection and extension.
 
 [Download for macOS](https://github.com/djm3622/SineSoda/releases/latest/download/SineSoda-macOS-universal.zip)
 | [Download for Windows](https://github.com/djm3622/SineSoda/releases/latest/download/SineSoda-Windows-x64.zip)
@@ -134,5 +140,7 @@ fresh-build test. FL Studio 2026 v26.1.1.5313 also verified and registered the
 installed VST3 as an effect. Windows support is represented in the build and CI
 configuration but has not yet been exercised on local Windows hardware.
 
-SineSoda is licensed under Apache-2.0. Third-party dependency pins and notices
-are in [THIRD_PARTY.md](THIRD_PARTY.md).
+SineSoda is licensed under Apache-2.0. Contributions, validation on additional
+hosts and hardware, and discussions about new analysis methods are welcome.
+Third-party dependency pins and notices are in
+[THIRD_PARTY.md](THIRD_PARTY.md).

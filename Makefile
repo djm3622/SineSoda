@@ -1,4 +1,6 @@
-.PHONY: bootstrap configure build benchmark qa-macos test format format-check check sanitize clean
+.PHONY: bootstrap configure build benchmark qa-macos site-visuals test format format-check check sanitize clean
+
+SITE_VISUALS_PYTHON ?= python3
 
 bootstrap:
 	cmake --preset debug
@@ -23,6 +25,12 @@ qa-macos:
 	cmake --preset core-release
 	cmake --build --preset core-release --target SineSodaExhaustiveQA
 	./build/core-release/SineSodaExhaustiveQA --output artifacts/qa/macos-exhaustive
+
+site-visuals:
+	cmake --preset core-release
+	cmake --build --preset core-release --target SineSodaSiteVisuals
+	./build/core-release/SineSodaSiteVisuals --output artifacts/qa/site-visual-export
+	$(SITE_VISUALS_PYTHON) tools/package_site_visuals.py --input artifacts/qa/site-visual-export --output site/assets --ui-template artifacts/qa/site-captures/sinesoda-stft-8192-metronome.png
 
 format:
 	cmake --build --preset core-debug --target format

@@ -3,29 +3,44 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="SineSoda is a free, open-source VST3 time-frequency analyzer with 15 real-time transforms for FL Studio on macOS and Windows.">
+    <meta name="description" content="SineSoda is a free, open-source VST3 plug-in for exploring and comparing 15 time-frequency transforms on live audio.">
     <meta name="application-name" content="SineSoda">
-    <meta name="color-scheme" content="dark">
+    <meta name="color-scheme" content="light dark">
     <meta name="theme-color" content="#080b12">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="SineSoda">
-    <meta property="og:title" content="SineSoda — Real-time spectral analysis for FL Studio">
-    <meta property="og:description" content="A free, open-source VST3 time-frequency analyzer with 15 real-time transforms for macOS and Windows.">
+    <meta property="og:title" content="SineSoda — An open time-frequency analysis plug-in">
+    <meta property="og:description" content="Explore and compare 15 time-frequency transforms on live audio with a free, open-source VST3 plug-in.">
     <meta property="og:url" content="https://djm3622.github.io/SineSoda/">
     <meta property="og:image" content="https://djm3622.github.io/SineSoda/social-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="SineSoda waveform logo on a dark teal and violet spectral background">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="SineSoda — Real-time spectral analysis for FL Studio">
-    <meta name="twitter:description" content="A free, open-source VST3 time-frequency analyzer with 15 real-time transforms for macOS and Windows.">
+    <meta name="twitter:title" content="SineSoda — An open time-frequency analysis plug-in">
+    <meta name="twitter:description" content="Explore and compare 15 time-frequency transforms on live audio with a free, open-source VST3 plug-in.">
     <meta name="twitter:image" content="https://djm3622.github.io/SineSoda/social-card.png">
     <meta name="twitter:image:alt" content="SineSoda waveform logo on a dark teal and violet spectral background">
-    <title>SineSoda — Real-time spectral analysis for FL Studio</title>
+    <title>SineSoda — An open time-frequency analysis plug-in</title>
     <link rel="canonical" href="https://djm3622.github.io/SineSoda/">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32">
     <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
+    <script>
+      (function () {
+        var theme = null;
+        try {
+          theme = window.parent !== window
+            ? window.parent.document.documentElement.getAttribute('data-theme')
+            : localStorage.getItem('david-millard-theme');
+        } catch (error) {
+          // Cross-origin embeds and unavailable storage use the system preference.
+        }
+        if (theme === 'light' || theme === 'dark') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      }());
+    </script>
     <link rel="stylesheet" href="styles.css">
     <script type="application/ld+json">
       {
@@ -35,7 +50,7 @@
         "applicationCategory": "MultimediaApplication",
         "operatingSystem": "macOS, Windows",
         "softwareVersion": "1.0.0",
-        "description": "A free, open-source VST3 time-frequency analyzer with 15 real-time transforms.",
+        "description": "A free, open-source VST3 plug-in for exploring and comparing 15 time-frequency transforms on live audio.",
         "url": "https://djm3622.github.io/SineSoda/",
         "downloadUrl": "https://github.com/djm3622/SineSoda/releases/latest",
         "codeRepository": "https://github.com/djm3622/SineSoda",
@@ -50,17 +65,18 @@
       <nav aria-label="Project navigation">
         <a href="#examples">Examples</a>
         <a href="#tutorials">Tutorials</a>
-        <a href="#compare">Compare</a>
+        <a href="#capabilities">Capabilities</a>
         <a href="#install">Install</a>
         <a href="https://github.com/djm3622/SineSoda">GitHub</a>
+        <button class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">☀</button>
       </nav>
     </header>
 
     <main id="top">
       <section class="hero">
-        <p class="eyebrow">Free and open-source VST3 effect</p>
-        <h1>See sound from every angle.</h1>
-        <p class="lede">SineSoda is a resizable, real-time time-frequency analyzer with 15 transforms, calibrated color, and bit-exact audio pass-through.</p>
+        <p class="eyebrow">Open-source time-frequency analysis</p>
+        <h1>See sound across time and frequency.</h1>
+        <p class="lede">SineSoda is a real-time VST3 analysis plug-in for researchers, engineers, educators, and anyone curious about sound. Compare 15 transforms on the same live input while the audio passes through unchanged.</p>
         <div class="downloads">
           <a class="button primary" href="https://github.com/djm3622/SineSoda/releases/latest/download/SineSoda-macOS-universal.zip">Download for macOS</a>
           <a class="button" href="https://github.com/djm3622/SineSoda/releases/latest/download/SineSoda-Windows-x64.zip">Download for Windows</a>
@@ -68,117 +84,110 @@
         <p class="detail">macOS universal (Apple Silicon + Intel) · Windows x64 · VST3 · Apache-2.0</p>
       </section>
 
-      <section class="preview" aria-label="SineSoda transform previews">
-        <img src="transform-previews.png" alt="A grid of colorful spectrogram previews produced by SineSoda transforms">
+      <section class="transform-showcase" aria-labelledby="transform-showcase-title">
+        <div class="showcase-heading">
+          <div>
+            <p class="eyebrow">Compare the methods</p>
+            <h2 id="transform-showcase-title">Fifteen transforms. One open-source plug-in.</h2>
+          </div>
+          <p>These examples use the same analysis settings wherever possible, making it easier to see what each method reveals. Frequency views use an 8,192-point analysis and logarithmic display; chroma keeps its native twelve pitch-class rows.</p>
+        </div>
+        <div class="transform-atlas">
+          <figure class="transform-card"><img src="assets/transform-stft.webp" width="946" height="420" alt="Full-width STFT time-frequency history of the harmonic-resolution piano roll"><figcaption><strong>STFT</strong><span>Exact FFT bins and steady harmonic detail.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-log-filterbank.webp" width="946" height="420" alt="Full-width log-filterbank history of the harmonic-resolution piano roll" loading="lazy"><figcaption><strong>Log filterbank</strong><span>Equal musical spacing across octaves.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-mel.webp" width="946" height="420" alt="Full-width Mel-frequency history of the harmonic-resolution piano roll" loading="lazy"><figcaption><strong>Mel</strong><span>Perceptual emphasis for broad spectral balance.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-bark.webp" width="946" height="420" alt="Full-width Bark-scale history of the harmonic-resolution piano roll" loading="lazy"><figcaption><strong>Bark</strong><span>Critical-band grouping for masking cues.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-erb.webp" width="946" height="420" alt="Full-width ERB-scale history of the harmonic-resolution piano roll" loading="lazy"><figcaption><strong>ERB</strong><span>Cochlear bandwidths with smooth low-end separation.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-cqt.webp" width="946" height="420" alt="Full-width constant-Q history of the arpeggiated extended-chord piano roll" loading="lazy"><figcaption><strong>CQT</strong><span>Stable note geometry for chords and tuning.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-vqt.webp" width="946" height="420" alt="Full-width variable-Q history of the arpeggiated extended-chord piano roll" loading="lazy"><figcaption><strong>VQT</strong><span>Note alignment with shorter low-frequency support.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-morlet-cwt.webp" width="946" height="420" alt="Full-width Morlet wavelet history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Morlet CWT</strong><span>Multi-resolution onset and motion structure.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-morse-cwt.webp" width="946" height="420" alt="Full-width Morse wavelet history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Morse CWT</strong><span>Adjustable analytic wavelet concentration.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-stockwell.webp" width="946" height="420" alt="Full-width Stockwell history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Stockwell</strong><span>Frequency-dependent timing with absolute phase.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-reassigned-stft.webp" width="946" height="420" alt="Full-width frequency-reassigned STFT history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Reassigned STFT</strong><span>Sharper ridges and separated short notes.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-synchrosqueezed-cwt.webp" width="946" height="420" alt="Full-width synchrosqueezed wavelet history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Synchrosqueezed CWT</strong><span>Concentrated instantaneous-frequency tracks.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-chroma.webp" width="946" height="420" alt="Full-width twelve-row chroma history of the arpeggiated extended-chord piano roll" loading="lazy"><figcaption><strong>Chroma</strong><span>Pitch-class motion independent of octave.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-haar-wavelet-packet.webp" width="946" height="420" alt="Full-width Haar wavelet-packet history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Haar wavelet packet</strong><span>Block-local changes and abrupt edges.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-smoothed-pseudo-wigner-ville.webp" width="946" height="420" alt="Full-width smoothed pseudo Wigner-Ville history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Smoothed pseudo Wigner–Ville</strong><span>High concentration with controlled cross-terms.</span></figcaption></figure>
+        </div>
       </section>
 
       <section class="features" aria-label="Key features">
-        <article><h2>15 analysis modes</h2><p>STFT, CQT, VQT, wavelets, Stockwell, reassigned and synchrosqueezed transforms, chroma, and more.</p></article>
-        <article><h2>Built for live audio</h2><p>Lock-free audio handoff, bounded display queues, overload recovery, and automatic analysis rate limiting.</p></article>
-        <article><h2>Made for FL Studio</h2><p>Install it as a mixer effect, rescan VST3 plug-ins, and analyze without changing the signal.</p></article>
+        <article><h2>Compare 15 methods</h2><p>Move between STFT, CQT, VQT, wavelets, Stockwell, reassigned and synchrosqueezed transforms, chroma, and more.</p></article>
+        <article><h2>Designed for live signals</h2><p>Lock-free audio handoff, bounded queues, overload recovery, and automatic rate limiting keep analysis work away from the audio path.</p></article>
+        <article><h2>Open to inspect and extend</h2><p>The implementation, algorithm notes, tests, and build system are available under Apache-2.0 for research, teaching, and engineering work.</p></article>
       </section>
 
       <section id="examples" class="section-block">
         <div class="section-intro">
           <p class="eyebrow">Examples</p>
-          <h2>One signal. Fifteen perspectives.</h2>
-          <p>Different transforms expose different structures in the same audio—from note-aligned harmonics to transients, chirps, and pitch-class activity.</p>
+          <h2>Start with a question, then choose a view.</h2>
+          <p>These short examples show how different representations help with sustained harmonics, localized onsets, and pitch-class motion.</p>
         </div>
-        <div class="media-grid">
-          <figure class="media-placeholder media-wide">
-            <div class="placeholder-frame" role="img" aria-label="Reserved space for an animated transform comparison">
-              <span class="placeholder-tag">GIF</span>
-              <strong>Live transform comparison</strong>
-              <small>Reserved for the same loop viewed through multiple transforms</small>
-            </div>
-            <figcaption>Switch transforms in real time without interrupting the audio path.</figcaption>
-          </figure>
-          <figure class="media-placeholder">
-            <div class="placeholder-frame" role="img" aria-label="Reserved space for a harmonic signal image">
-              <span class="placeholder-tag">IMAGE</span>
-              <strong>Harmonics and tuning</strong>
-              <small>CQT · VQT · Chroma</small>
-            </div>
-            <figcaption>Inspect pitch-centered structure with musical frequency geometry.</figcaption>
-          </figure>
-          <figure class="media-placeholder">
-            <div class="placeholder-frame" role="img" aria-label="Reserved space for a transient signal image">
-              <span class="placeholder-tag">IMAGE</span>
-              <strong>Transients and motion</strong>
-              <small>Reassigned STFT · Stockwell · Wavelets</small>
-            </div>
-            <figcaption>Compare time and frequency localization on fast-moving material.</figcaption>
-          </figure>
+        <div class="signal-stories">
+          <article class="signal-story">
+            <div class="signal-copy"><p class="story-number">01</p><h3>Resolve notes and harmonics</h3><p>Extended chords with low roots, close upper voices, and sustained tails give CQT enough structure to expose octave geometry and partial spacing.</p><p class="story-settings">CQT · 8,192 points · Log display · 48 bins/octave</p></div>
+            <div class="signal-media"><img class="plugin-loop" src="assets/harmonic-resolution.gif" width="1000" height="960" loading="lazy" alt="A synchronized piano-roll playhead and scrolling CQT view for four sustained extended chords"></div>
+          </article>
+          <article class="signal-story">
+            <div class="signal-copy"><p class="story-number">02</p><h3>Separate onsets and motion</h3><p>Short ascending notes, octave punctuations, and changing durations make localization differences visible instead of hiding them inside sustained energy.</p><p class="story-settings">Reassigned STFT · 8,192 points · Log display</p></div>
+            <div class="signal-media"><img class="plugin-loop" src="assets/transient-localization.gif" width="1000" height="960" loading="lazy" alt="A synchronized piano-roll playhead and scrolling frequency-reassigned STFT for short ascending transients"></div>
+          </article>
+          <article class="signal-story">
+            <div class="signal-copy"><p class="story-number">03</p><h3>Follow harmonic function</h3><p>Arpeggiated major, minor, predominant, and dominant colors keep pitch classes distinct while moving notes across octaves.</p><p class="story-settings">Chroma · 8,192-point source analysis · 12 pitch classes</p></div>
+            <div class="signal-media"><img class="plugin-loop" src="assets/pitch-class-motion.gif" width="1000" height="960" loading="lazy" alt="A synchronized piano-roll playhead and scrolling Chroma view for four ascending harmonic arpeggios"></div>
+          </article>
         </div>
       </section>
 
       <section id="use-cases" class="section-block">
         <div class="section-intro">
           <p class="eyebrow">Use cases</p>
-          <h2>Move from “what am I hearing?” to “where is it happening?”</h2>
+          <h2>Useful at the bench, in the studio, and in the classroom.</h2>
         </div>
         <div class="use-case-grid">
-          <article><span>01</span><h3>Sound design</h3><p>See how FM, distortion, filtering, and modulation create or move energy over time.</p></article>
-          <article><span>02</span><h3>Mix diagnosis</h3><p>Locate masking, resonant tails, low-end buildup, and transient overlap with the transform suited to the problem.</p></article>
-          <article><span>03</span><h3>Harmony and tuning</h3><p>Use constant-Q, variable-Q, or chroma views to inspect notes, harmonics, chords, and pitch-class activity.</p></article>
-          <article><span>04</span><h3>Learning and research</h3><p>Compare time-frequency methods on identical live material with explicit controls and documented algorithms.</p></article>
+          <article><span>01</span><h3>Research and prototyping</h3><p>Compare time-frequency methods on the same live input before committing to one in a larger analysis pipeline.</p></article>
+          <article><span>02</span><h3>Audio engineering</h3><p>Investigate masking, resonant tails, low-frequency buildup, and transient overlap using a representation suited to the problem.</p></article>
+          <article><span>03</span><h3>Teaching and learning</h3><p>Make the trade-offs between time resolution, frequency resolution, perceptual scales, and pitch-based views visible as audio plays.</p></article>
+          <article><span>04</span><h3>Sound and music analysis</h3><p>Inspect modulation, harmonics, tuning, chords, and pitch-class activity without changing the source signal.</p></article>
         </div>
       </section>
 
-      <section id="compare" class="section-block comparison-section">
+      <section id="capabilities" class="section-block">
         <div class="section-intro">
-          <p class="eyebrow">SineSoda vs. Wave Candy</p>
-          <h2>Focused depth, not a drop-in replacement.</h2>
-          <p>Wave Candy is FL Studio’s broad visualization tool: oscilloscope, spectrum, vectorscope, and peak meter. SineSoda goes narrower and deeper on scrolling spectral and time-frequency analysis. They are complementary tools built for different questions.</p>
+          <p class="eyebrow">Capabilities</p>
+          <h2>Hold the signal steady and change the analysis.</h2>
+          <p>Switch the transform, frequency geometry, resolution, update rate, and calibrated color range without interrupting the source. This makes side-by-side reasoning easier and keeps the comparison grounded in the same material.</p>
         </div>
-        <div class="comparison-wrap" role="region" aria-label="SineSoda and Wave Candy feature comparison" tabindex="0">
-          <table>
-            <thead><tr><th scope="col">Capability</th><th scope="col">SineSoda</th><th scope="col">Wave Candy</th></tr></thead>
-            <tbody>
-              <tr><th scope="row">Primary focus</th><td>Deep time-frequency exploration</td><td>General audio visualization and metering</td></tr>
-              <tr><th scope="row">Analysis views</th><td>15 spectral and time-frequency transforms</td><td>Oscilloscope, spectrum, vectorscope, and peak meter</td></tr>
-              <tr><th scope="row">Pitch-oriented analysis</th><td>CQT, VQT, chroma, log scales, and piano ruler</td><td>Musical spectrum scale with a piano keyboard option</td></tr>
-              <tr><th scope="row">Advanced transforms</th><td>Wavelets, Stockwell, reassigned STFT, synchrosqueezing, and SPWVD</td><td>Not its intended scope</td></tr>
-              <tr><th scope="row">Best fit</th><td>Comparing how spectral structure changes over time</td><td>Waveform, stereo, level, and conventional spectrum checks</td></tr>
-              <tr><th scope="row">Distribution</th><td>Open-source VST3 for macOS and Windows</td><td>Included with FL Studio</td></tr>
-            </tbody>
-          </table>
+        <div class="capability-grid">
+          <article><span>01</span><h3>Transform depth</h3><p>Move across FFT, filterbank, wavelet, reassigned, quadratic, and pitch-class views.</p></article>
+          <article><span>02</span><h3>Musical geometry</h3><p>Use logarithmic frequency, constant-Q spacing, and a piano ruler to read notes and partials.</p></article>
+          <article><span>03</span><h3>Resolution control</h3><p>Set FFT size up to 8,192 points, band count up to 512, and as many as 48 bins per octave.</p></article>
+          <article><span>04</span><h3>Analysis shaping</h3><p>Adjust speed, cutoff range, Q scale, and VQT gamma for the structure under inspection.</p></article>
+          <article><span>05</span><h3>Calibrated display</h3><p>Choose native, logarithmic, or linear layout with explicit dBFS floor and ceiling controls.</p></article>
+          <article><span>06</span><h3>Live resilience</h3><p>Keep audio bit-exact while bounded queues, overload recovery, and rate limiting protect the UI.</p></article>
         </div>
-        <p class="comparison-note">Wave Candy details are based on the <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/plugins/Wave%20Candy.htm">official Image-Line manual</a>.</p>
-        <figure class="media-placeholder comparison-media">
-          <div class="placeholder-frame" role="img" aria-label="Reserved space for a SineSoda and Wave Candy comparison GIF">
-            <span class="placeholder-tag">GIF</span>
-            <strong>Side-by-side comparison</strong>
-            <small>Reserved for identical audio running through SineSoda and Wave Candy</small>
-          </div>
-          <figcaption>A direct visual comparison will live here.</figcaption>
-        </figure>
       </section>
 
       <section id="tutorials" class="section-block">
         <div class="section-intro">
           <p class="eyebrow">Tutorials</p>
-          <h2>Start simple, then choose the right transform.</h2>
-          <p>These walkthroughs will pair short explanations with focused screen recordings.</p>
+          <h2>See the controls in context.</h2>
+          <p>These short tours keep the source running while the analysis method and display geometry change, so you can connect each control to its effect on the result.</p>
         </div>
         <div class="tutorial-grid">
           <article>
-            <div class="tutorial-placeholder"><span>GIF 01</span></div>
-            <p class="tutorial-meta">Getting started · 2 min</p>
-            <h3>Load SineSoda in FL Studio</h3>
-            <p>Install the VST3, scan it in Plugin Manager, and add it to a mixer effect slot.</p>
+            <video class="tutorial-media" width="900" height="864" autoplay loop muted playsinline preload="metadata" aria-label="A sleek piano roll with a synchronized playhead above SineSoda while all fifteen transforms and their relevant parameters change">
+              <source src="assets/tutorial-transform-tour.mp4" type="video/mp4">
+            </video>
+            <p class="tutorial-meta">Transform tour</p>
+            <h3>Move through every transform</h3>
+            <p>Watch the same musical phrase pass through all fifteen views while FFT size, bands, bins per octave, Q scale, and VQT gamma sweep across their full ranges.</p>
           </article>
           <article>
-            <div class="tutorial-placeholder"><span>GIF 02</span></div>
-            <p class="tutorial-meta">Core workflow · 4 min</p>
-            <h3>Choose a transform</h3>
-            <p>Learn when to reach for STFT, CQT, wavelets, reassignment, or chroma.</p>
-          </article>
-          <article>
-            <div class="tutorial-placeholder"><span>GIF 03</span></div>
-            <p class="tutorial-meta">Reading the display · 3 min</p>
-            <h3>Read color, time, and pitch</h3>
-            <p>Use the dBFS color scale, time ruler, hover readout, and piano frequency ruler.</p>
+            <img class="tutorial-media" src="assets/tutorial-scale-tour.gif" width="900" height="864" loading="lazy" alt="A synchronized piano roll above SineSoda while Native and Linear domains are dragged vertically and Log remains fixed">
+            <p class="tutorial-meta">Scale options</p>
+            <h3>Switch the display geometry</h3>
+            <p>Drag vertically through the scrollable Native and Linear frequency domains, then compare them with the fixed full-range logarithmic view.</p>
           </article>
         </div>
       </section>
@@ -197,7 +206,85 @@
 
     <footer>
       <span>SineSoda 1.0</span>
-      <nav aria-label="Project links"><a href="https://github.com/djm3622/SineSoda">Source</a><a href="https://github.com/djm3622/SineSoda/releases/latest">All releases</a><a href="https://github.com/djm3622/SineSoda/issues">Support</a></nav>
+      <nav aria-label="Project links"><a href="https://github.com/djm3622/SineSoda">Source</a><a href="https://github.com/djm3622/SineSoda/releases/latest">All releases</a><a href="https://github.com/djm3622/SineSoda/issues">Issues and ideas</a></nav>
     </footer>
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var toggle = document.querySelector('.theme-toggle');
+        var themeColor = document.querySelector('meta[name="theme-color"]');
+        var systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+        var parentObserver = null;
+
+        function currentTheme() {
+          var explicitTheme = root.getAttribute('data-theme');
+          return explicitTheme === 'light' || explicitTheme === 'dark'
+            ? explicitTheme
+            : (systemTheme.matches ? 'dark' : 'light');
+        }
+
+        function updateControls() {
+          var dark = currentTheme() === 'dark';
+          var action = dark ? 'Switch to light mode' : 'Switch to dark mode';
+          toggle.textContent = dark ? '☀' : '☾';
+          toggle.setAttribute('aria-label', action);
+          toggle.setAttribute('title', action);
+          toggle.setAttribute('aria-pressed', String(dark));
+          themeColor.setAttribute('content', dark ? '#080b12' : '#f7fafc');
+        }
+
+        function applyTheme(theme, persist) {
+          if (theme !== 'light' && theme !== 'dark') return;
+          root.setAttribute('data-theme', theme);
+          if (persist) {
+            try {
+              localStorage.setItem('david-millard-theme', theme);
+            } catch (error) {
+              // The theme remains active for this page when storage is unavailable.
+            }
+          }
+          updateControls();
+        }
+
+        function syncFromParent() {
+          try {
+            if (window.parent === window) return false;
+            var parentRoot = window.parent.document.documentElement;
+            root.classList.add('is-embedded');
+            var sync = function () {
+              var theme = parentRoot.getAttribute('data-theme');
+              if (theme === 'light' || theme === 'dark') {
+                applyTheme(theme, false);
+              } else {
+                root.removeAttribute('data-theme');
+                updateControls();
+              }
+            };
+            parentObserver = new MutationObserver(sync);
+            parentObserver.observe(parentRoot, { attributes: true, attributeFilter: ['data-theme'] });
+            sync();
+            return true;
+          } catch (error) {
+            return false;
+          }
+        }
+
+        toggle.addEventListener('click', function () {
+          applyTheme(currentTheme() === 'dark' ? 'light' : 'dark', true);
+        });
+        systemTheme.addEventListener('change', function () {
+          if (!root.hasAttribute('data-theme')) updateControls();
+        });
+        window.addEventListener('storage', function (event) {
+          if (event.key === 'david-millard-theme') applyTheme(event.newValue, false);
+        });
+        window.addEventListener('message', function (event) {
+          if (event.data && event.data.type === 'theme') applyTheme(event.data.theme, false);
+        });
+
+        syncFromParent();
+        updateControls();
+      }());
+    </script>
   </body>
 </html>

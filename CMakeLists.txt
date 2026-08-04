@@ -92,6 +92,9 @@ if(SINESODA_BUILD_BENCHMARKS)
 
   add_executable(SineSodaExhaustiveQA tools/exhaustive_qa.cpp)
   target_link_libraries(SineSodaExhaustiveQA PRIVATE SineSoda::DSP)
+
+  add_executable(SineSodaSiteVisuals tools/site_visuals.cpp)
+  target_link_libraries(SineSodaSiteVisuals PRIVATE SineSoda::DSP)
 endif()
 
 set(
@@ -126,7 +129,8 @@ set(
   ${CMAKE_CURRENT_SOURCE_DIR}/tests/TestSupport.h
   ${CMAKE_CURRENT_SOURCE_DIR}/tests/TestTransforms.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/tools/benchmark_transforms.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/tools/exhaustive_qa.cpp)
+  ${CMAKE_CURRENT_SOURCE_DIR}/tools/exhaustive_qa.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/tools/site_visuals.cpp)
 find_program(
   SINESODA_CLANG_FORMAT_EXECUTABLE
   NAMES clang-format clang-format-18

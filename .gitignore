@@ -2,9 +2,11 @@
 .cache/
 .idea/
 .vscode/
+__pycache__/
 build/
 _deps/
 build-*/
 out/
 *.profraw
 *.profdata
+artifacts/qa/site-visual-export/
