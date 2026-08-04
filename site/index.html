@@ -4,11 +4,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="SineSoda, a free real-time VST3 time-frequency analyzer for FL Studio on macOS and Windows.">
+    <meta name="theme-color" content="#080b12">
     <title>SineSoda — Real-time spectral analysis for FL Studio</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <main>
+    <header class="site-header">
+      <a class="wordmark" href="#top">SineSoda</a>
+      <nav aria-label="Project navigation">
+        <a href="#examples">Examples</a>
+        <a href="#tutorials">Tutorials</a>
+        <a href="#compare">Compare</a>
+        <a href="#install">Install</a>
+        <a href="https://github.com/djm3622/SineSoda">GitHub</a>
+      </nav>
+    </header>
+
+    <main id="top">
       <section class="hero">
         <p class="eyebrow">Free and open-source VST3 effect</p>
         <h1>See sound from every angle.</h1>
@@ -24,13 +36,118 @@
         <img src="transform-previews.png" alt="A grid of colorful spectrogram previews produced by SineSoda transforms">
       </section>
 
-      <section class="features">
+      <section class="features" aria-label="Key features">
         <article><h2>15 analysis modes</h2><p>STFT, CQT, VQT, wavelets, Stockwell, reassigned and synchrosqueezed transforms, chroma, and more.</p></article>
         <article><h2>Built for live audio</h2><p>Lock-free audio handoff, bounded display queues, overload recovery, and automatic analysis rate limiting.</p></article>
         <article><h2>Made for FL Studio</h2><p>Install it as a mixer effect, rescan VST3 plug-ins, and analyze without changing the signal.</p></article>
       </section>
 
-      <section class="install">
+      <section id="examples" class="section-block">
+        <div class="section-intro">
+          <p class="eyebrow">Examples</p>
+          <h2>One signal. Fifteen perspectives.</h2>
+          <p>Different transforms expose different structures in the same audio—from note-aligned harmonics to transients, chirps, and pitch-class activity.</p>
+        </div>
+        <div class="media-grid">
+          <figure class="media-placeholder media-wide">
+            <div class="placeholder-frame" role="img" aria-label="Reserved space for an animated transform comparison">
+              <span class="placeholder-tag">GIF</span>
+              <strong>Live transform comparison</strong>
+              <small>Reserved for the same loop viewed through multiple transforms</small>
+            </div>
+            <figcaption>Switch transforms in real time without interrupting the audio path.</figcaption>
+          </figure>
+          <figure class="media-placeholder">
+            <div class="placeholder-frame" role="img" aria-label="Reserved space for a harmonic signal image">
+              <span class="placeholder-tag">IMAGE</span>
+              <strong>Harmonics and tuning</strong>
+              <small>CQT · VQT · Chroma</small>
+            </div>
+            <figcaption>Inspect pitch-centered structure with musical frequency geometry.</figcaption>
+          </figure>
+          <figure class="media-placeholder">
+            <div class="placeholder-frame" role="img" aria-label="Reserved space for a transient signal image">
+              <span class="placeholder-tag">IMAGE</span>
+              <strong>Transients and motion</strong>
+              <small>Reassigned STFT · Stockwell · Wavelets</small>
+            </div>
+            <figcaption>Compare time and frequency localization on fast-moving material.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="use-cases" class="section-block">
+        <div class="section-intro">
+          <p class="eyebrow">Use cases</p>
+          <h2>Move from “what am I hearing?” to “where is it happening?”</h2>
+        </div>
+        <div class="use-case-grid">
+          <article><span>01</span><h3>Sound design</h3><p>See how FM, distortion, filtering, and modulation create or move energy over time.</p></article>
+          <article><span>02</span><h3>Mix diagnosis</h3><p>Locate masking, resonant tails, low-end buildup, and transient overlap with the transform suited to the problem.</p></article>
+          <article><span>03</span><h3>Harmony and tuning</h3><p>Use constant-Q, variable-Q, or chroma views to inspect notes, harmonics, chords, and pitch-class activity.</p></article>
+          <article><span>04</span><h3>Learning and research</h3><p>Compare time-frequency methods on identical live material with explicit controls and documented algorithms.</p></article>
+        </div>
+      </section>
+
+      <section id="compare" class="section-block comparison-section">
+        <div class="section-intro">
+          <p class="eyebrow">SineSoda vs. Wave Candy</p>
+          <h2>Focused depth, not a drop-in replacement.</h2>
+          <p>Wave Candy is FL Studio’s broad visualization tool: oscilloscope, spectrum, vectorscope, and peak meter. SineSoda goes narrower and deeper on scrolling spectral and time-frequency analysis. They are complementary tools built for different questions.</p>
+        </div>
+        <div class="comparison-wrap" role="region" aria-label="SineSoda and Wave Candy feature comparison" tabindex="0">
+          <table>
+            <thead><tr><th scope="col">Capability</th><th scope="col">SineSoda</th><th scope="col">Wave Candy</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Primary focus</th><td>Deep time-frequency exploration</td><td>General audio visualization and metering</td></tr>
+              <tr><th scope="row">Analysis views</th><td>15 spectral and time-frequency transforms</td><td>Oscilloscope, spectrum, vectorscope, and peak meter</td></tr>
+              <tr><th scope="row">Pitch-oriented analysis</th><td>CQT, VQT, chroma, log scales, and piano ruler</td><td>Musical spectrum scale with a piano keyboard option</td></tr>
+              <tr><th scope="row">Advanced transforms</th><td>Wavelets, Stockwell, reassigned STFT, synchrosqueezing, and SPWVD</td><td>Not its intended scope</td></tr>
+              <tr><th scope="row">Best fit</th><td>Comparing how spectral structure changes over time</td><td>Waveform, stereo, level, and conventional spectrum checks</td></tr>
+              <tr><th scope="row">Distribution</th><td>Open-source VST3 for macOS and Windows</td><td>Included with FL Studio</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="comparison-note">Wave Candy details are based on the <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/plugins/Wave%20Candy.htm">official Image-Line manual</a>.</p>
+        <figure class="media-placeholder comparison-media">
+          <div class="placeholder-frame" role="img" aria-label="Reserved space for a SineSoda and Wave Candy comparison GIF">
+            <span class="placeholder-tag">GIF</span>
+            <strong>Side-by-side comparison</strong>
+            <small>Reserved for identical audio running through SineSoda and Wave Candy</small>
+          </div>
+          <figcaption>A direct visual comparison will live here.</figcaption>
+        </figure>
+      </section>
+
+      <section id="tutorials" class="section-block">
+        <div class="section-intro">
+          <p class="eyebrow">Tutorials</p>
+          <h2>Start simple, then choose the right transform.</h2>
+          <p>These walkthroughs will pair short explanations with focused screen recordings.</p>
+        </div>
+        <div class="tutorial-grid">
+          <article>
+            <div class="tutorial-placeholder"><span>GIF 01</span></div>
+            <p class="tutorial-meta">Getting started · 2 min</p>
+            <h3>Load SineSoda in FL Studio</h3>
+            <p>Install the VST3, scan it in Plugin Manager, and add it to a mixer effect slot.</p>
+          </article>
+          <article>
+            <div class="tutorial-placeholder"><span>GIF 02</span></div>
+            <p class="tutorial-meta">Core workflow · 4 min</p>
+            <h3>Choose a transform</h3>
+            <p>Learn when to reach for STFT, CQT, wavelets, reassignment, or chroma.</p>
+          </article>
+          <article>
+            <div class="tutorial-placeholder"><span>GIF 03</span></div>
+            <p class="tutorial-meta">Reading the display · 3 min</p>
+            <h3>Read color, time, and pitch</h3>
+            <p>Use the dBFS color scale, time ruler, hover readout, and piano frequency ruler.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="install" class="install">
         <p class="eyebrow">Install in three steps</p>
         <h2>Download. Copy. Scan.</h2>
         <ol>
@@ -41,9 +158,10 @@
         <p><a href="https://github.com/djm3622/SineSoda/blob/main/docs/INSTALL.md">Read the complete installation guide →</a></p>
       </section>
     </main>
+
     <footer>
       <span>SineSoda 1.0</span>
-      <nav><a href="https://github.com/djm3622/SineSoda">Source</a><a href="https://github.com/djm3622/SineSoda/releases/latest">All releases</a><a href="https://github.com/djm3622/SineSoda/issues">Support</a></nav>
+      <nav aria-label="Project links"><a href="https://github.com/djm3622/SineSoda">Source</a><a href="https://github.com/djm3622/SineSoda/releases/latest">All releases</a><a href="https://github.com/djm3622/SineSoda/issues">Support</a></nav>
     </footer>
   </body>
 </html>
