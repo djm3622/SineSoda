@@ -1,0 +1,36 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-14, windows-2022]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure macOS
+        if: runner.os == 'macOS'
+        shell: bash
+        run: >-
+          cmake -S . -B build/ci -G Ninja
+          -DCMAKE_BUILD_TYPE=Release
+          -DSINESODA_UNIVERSAL_MACOS=OFF
+          -DSINESODA_BUILD_PLUGIN=ON
+          -DSINESODA_BUILD_TESTS=ON
+      - name: Configure Windows
+        if: runner.os == 'Windows'
+        shell: bash
+        run: >-
+          cmake -S . -B build/ci -G "Visual Studio 17 2022" -A x64
+          -DSINESODA_UNIVERSAL_MACOS=OFF
+          -DSINESODA_BUILD_PLUGIN=ON
+          -DSINESODA_BUILD_TESTS=ON
+      - name: Build
+        run: cmake --build build/ci --config Release --target SineSoda-vst3 SineSodaTests
+      - name: Test
+        run: ctest --test-dir build/ci -C Release --output-on-failure

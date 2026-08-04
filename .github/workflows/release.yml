@@ -1,0 +1,89 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build ${{ matrix.label }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-14
+            label: macOS universal
+            archive: SineSoda-macOS-universal.zip
+            universal: "ON"
+          - os: windows-2022
+            label: Windows x64
+            archive: SineSoda-Windows-x64.zip
+            universal: "OFF"
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure macOS release
+        if: runner.os == 'macOS'
+        shell: bash
+        run: >-
+          cmake -S . -B build/release -G Ninja
+          -DCMAKE_BUILD_TYPE=Release
+          -DSINESODA_UNIVERSAL_MACOS=${{ matrix.universal }}
+          -DSINESODA_BUILD_PLUGIN=ON
+          -DSINESODA_BUILD_TESTS=ON
+          -DSINESODA_BUILD_BENCHMARKS=OFF
+      - name: Configure Windows release
+        if: runner.os == 'Windows'
+        shell: bash
+        run: >-
+          cmake -S . -B build/release -G "Visual Studio 17 2022" -A x64
+          -DSINESODA_UNIVERSAL_MACOS=OFF
+          -DSINESODA_BUILD_PLUGIN=ON
+          -DSINESODA_BUILD_TESTS=ON
+          -DSINESODA_BUILD_BENCHMARKS=OFF
+      - name: Build and test
+        shell: bash
+        run: |
+          cmake --build build/release --config Release --target SineSoda-vst3 SineSodaTests
+          ctest --test-dir build/release -C Release --output-on-failure
+      - name: Package VST3
+        shell: bash
+        run: |
+          plugin_path="$(find build/release/out -type d -name SineSoda.vst3 -print -quit)"
+          test -n "$plugin_path"
+          cmake -E make_directory package
+          cmake -E copy_directory "$plugin_path" package/SineSoda.vst3
+          cmake -E copy LICENSE package/LICENSE.txt
+          cmake -E copy docs/INSTALL.md package/INSTALL.md
+          cmake -E chdir package cmake -E tar cf "../${{ matrix.archive }}" --format=zip SineSoda.vst3 LICENSE.txt INSTALL.md
+          cmake -E sha256sum "${{ matrix.archive }}" > "${{ matrix.archive }}.sha256"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.archive }}
+          path: |
+            ${{ matrix.archive }}
+            ${{ matrix.archive }}.sha256
+          if-no-files-found: error
+
+  publish:
+    name: Publish GitHub release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: release-assets
+          merge-multiple: true
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create "${GITHUB_REF_NAME}"
+          release-assets/*
+          --repo "${GITHUB_REPOSITORY}"
+          --title "SineSoda ${GITHUB_REF_NAME}"
+          --generate-notes

@@ -1,0 +1,10 @@
+.DS_Store
+.cache/
+.idea/
+.vscode/
+build/
+_deps/
+build-*/
+out/
+*.profraw
+*.profdata

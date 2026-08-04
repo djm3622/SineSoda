@@ -1,0 +1,43 @@
+﻿FL Studio (26.1.1.5313) [Apple Silicon] r59975 has encountered an error and needs to restart.
+
+Crash log saved to FL Studio/Support/Logs/Crash/ subfolder in user data folder.
+
+Please use Cmd+C to copy this message and report to support.
+
+OS Version:
+MacOS latest Version 26.5.2 (Build 25F84)
+
+Exception:
+EAccessViolation - Access violation - main thread
+
+Callstack:
+000000012B188000:000000012B233058: SineSoda
+000000012B188000:000000012B207630: SineSoda
+000000012B188000:000000012B2061EC: SineSoda
+000000012B188000:000000012B207AA0: SineSoda
+000000012B188000:000000012B2422EC: SineSoda
+0000000188076000:000000018810ADE4: Foundation
+0000000186809000:00000001868A0318: CoreFoundation
+0000000186809000:00000001868A0010: CoreFoundation
+0000000186809000:000000018689FB88: CoreFoundation
+0000000186809000:0000000186885C38: CoreFoundation
+0000000186809000:00000001869581C4: CoreFoundation
+00000001935AE000:000000019366B560: HIToolbox
+00000001935AE000:000000019366E8BC: HIToolbox
+00000001935AE000:00000001937F814C: HIToolbox
+000000018AC7B000:000000018B36035C: AppKit
+000000018AC7B000:000000018ACB4084: AppKit
+000000018AC7B000:000000018B8498B0: AppKit
+
+Modules:
+SineSoda: ~/Library/Audio/Plug-Ins/VST3/SineSoda.vst3/Contents/MacOS/SineSoda
+Foundation: /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation
+CoreFoundation: /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation
+HIToolbox: /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/HIToolbox
+AppKit: /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit
+
+
+Undo:
+Knob tweak (display)
+Insert effect plugin
+Last reset
