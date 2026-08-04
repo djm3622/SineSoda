@@ -1,6 +1,7 @@
 #include "sinesoda/dsp/Transforms.h"
 
 #include <algorithm>
+#include <array>
 #include <cmath>
 #include <complex>
 #include <cstddef>
