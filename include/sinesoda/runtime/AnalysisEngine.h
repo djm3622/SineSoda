@@ -65,7 +65,7 @@ class AnalysisEngine {
 
   void publishSettings(const dsp::AnalysisSettings& settings) noexcept;
   [[nodiscard]] dsp::AnalysisSettings readSettings() const noexcept;
-  void run(std::stop_token stopToken);
+  void run();
   void setStatus(std::string message);
 
   SpscRing<float> audioQueue_{kAudioQueueCapacity};
@@ -85,7 +85,8 @@ class AnalysisEngine {
   mutable std::mutex statusMutex_;
   std::string statusMessage_;
 
-  std::jthread worker_;
+  std::atomic<bool> stopRequested_{false};
+  std::thread worker_;
 };
 
 }  // namespace sinesoda::runtime

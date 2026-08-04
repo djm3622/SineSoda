@@ -76,11 +76,11 @@ RealtimeConfiguration adaptForRealtime(const dsp::AnalysisSettings& requested) {
 AnalysisEngine::AnalysisEngine(const dsp::AnalysisSettings& settings) {
   settings.validate();
   publishSettings(settings);
-  worker_ = std::jthread([this](std::stop_token stopToken) { run(stopToken); });
+  worker_ = std::thread([this] { run(); });
 }
 
 AnalysisEngine::~AnalysisEngine() {
-  worker_.request_stop();
+  stopRequested_.store(true, std::memory_order_release);
   if (worker_.joinable()) {
     worker_.join();
   }
@@ -245,7 +245,7 @@ dsp::AnalysisSettings AnalysisEngine::readSettings() const noexcept {
   }
 }
 
-void AnalysisEngine::run(std::stop_token stopToken) {
+void AnalysisEngine::run() {
   using namespace std::chrono_literals;
   std::uint64_t appliedGeneration = settingsGeneration_.load(std::memory_order_acquire);
   std::uint64_t observedGeneration = appliedGeneration;
@@ -256,7 +256,7 @@ void AnalysisEngine::run(std::stop_token stopToken) {
   std::array<float, 4096> block{};
   bool wasDisplayConsumerActive = true;
 
-  while (!stopToken.stop_requested()) {
+  while (!stopRequested_.load(std::memory_order_acquire)) {
     const std::uint64_t requestedGeneration = settingsGeneration_.load(std::memory_order_acquire);
     if (requestedGeneration != observedGeneration) {
       observedGeneration = requestedGeneration;
