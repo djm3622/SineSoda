@@ -21,7 +21,7 @@
     <meta name="twitter:description" content="Explore and compare 15 time-frequency transforms on live audio with a free, open-source VST3 plug-in.">
     <meta name="twitter:image" content="https://djm3622.github.io/SineSoda/social-card.png">
     <meta name="twitter:image:alt" content="SineSoda waveform logo on a dark teal and violet spectral background">
-    <title>SineSoda — An open time-frequency analysis plug-in</title>
+    <title>SineSoda</title>
     <link rel="canonical" href="https://djm3622.github.io/SineSoda/">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32">
@@ -75,8 +75,8 @@
     <main id="top">
       <section class="hero">
         <p class="eyebrow">Open-source time-frequency analysis</p>
-        <h1>See sound across time and frequency.</h1>
-        <p class="lede">SineSoda is a real-time VST3 analysis plug-in for researchers, engineers, educators, and anyone curious about sound. Compare 15 transforms on the same live input while the audio passes through unchanged.</p>
+        <h1>A spectrogram plug-in with 15 transforms.</h1>
+        <p class="lede">SineSoda is a free VST3 plug-in that draws a live spectrogram of whatever you put through it. It has 15 analysis methods, from the standard STFT to CQT, wavelets, and reassignment, and you can switch between them while the track plays. The audio itself passes through untouched.</p>
         <div class="downloads">
           <a class="button primary" href="https://github.com/djm3622/SineSoda/releases/latest/download/SineSoda-macOS-universal.zip">Download for macOS</a>
           <a class="button" href="https://github.com/djm3622/SineSoda/releases/latest/download/SineSoda-Windows-x64.zip">Download for Windows</a>
@@ -87,53 +87,53 @@
       <section class="transform-showcase" aria-labelledby="transform-showcase-title">
         <div class="showcase-heading">
           <div>
-            <p class="eyebrow">Compare the methods</p>
-            <h2 id="transform-showcase-title">Fifteen transforms. One open-source plug-in.</h2>
+            <p class="eyebrow">The transforms</p>
+            <h2 id="transform-showcase-title">What each transform shows</h2>
           </div>
-          <p>These examples use the same analysis settings wherever possible, making it easier to see what each method reveals. Frequency views use an 8,192-point analysis and logarithmic display; chroma keeps its native twelve pitch-class rows.</p>
+          <p>All of these use the same settings where the setting applies: an 8,192-point analysis and a logarithmic frequency axis. Chroma always has twelve rows, one per note name.</p>
         </div>
         <div class="transform-atlas">
-          <figure class="transform-card"><img src="assets/transform-stft.webp" width="946" height="420" alt="Full-width STFT time-frequency history of the harmonic-resolution piano roll"><figcaption><strong>STFT</strong><span>Exact FFT bins and steady harmonic detail.</span></figcaption></figure>
-          <figure class="transform-card"><img src="assets/transform-log-filterbank.webp" width="946" height="420" alt="Full-width log-filterbank history of the harmonic-resolution piano roll" loading="lazy"><figcaption><strong>Log filterbank</strong><span>Equal musical spacing across octaves.</span></figcaption></figure>
-          <figure class="transform-card"><img src="assets/transform-mel.webp" width="946" height="420" alt="Full-width Mel-frequency history of the harmonic-resolution piano roll" loading="lazy"><figcaption><strong>Mel</strong><span>Perceptual emphasis for broad spectral balance.</span></figcaption></figure>
-          <figure class="transform-card"><img src="assets/transform-bark.webp" width="946" height="420" alt="Full-width Bark-scale history of the harmonic-resolution piano roll" loading="lazy"><figcaption><strong>Bark</strong><span>Critical-band grouping for masking cues.</span></figcaption></figure>
-          <figure class="transform-card"><img src="assets/transform-erb.webp" width="946" height="420" alt="Full-width ERB-scale history of the harmonic-resolution piano roll" loading="lazy"><figcaption><strong>ERB</strong><span>Cochlear bandwidths with smooth low-end separation.</span></figcaption></figure>
-          <figure class="transform-card"><img src="assets/transform-cqt.webp" width="946" height="420" alt="Full-width constant-Q history of the arpeggiated extended-chord piano roll" loading="lazy"><figcaption><strong>CQT</strong><span>Stable note geometry for chords and tuning.</span></figcaption></figure>
-          <figure class="transform-card"><img src="assets/transform-vqt.webp" width="946" height="420" alt="Full-width variable-Q history of the arpeggiated extended-chord piano roll" loading="lazy"><figcaption><strong>VQT</strong><span>Note alignment with shorter low-frequency support.</span></figcaption></figure>
-          <figure class="transform-card"><img src="assets/transform-morlet-cwt.webp" width="946" height="420" alt="Full-width Morlet wavelet history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Morlet CWT</strong><span>Multi-resolution onset and motion structure.</span></figcaption></figure>
-          <figure class="transform-card"><img src="assets/transform-morse-cwt.webp" width="946" height="420" alt="Full-width Morse wavelet history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Morse CWT</strong><span>Adjustable analytic wavelet concentration.</span></figcaption></figure>
-          <figure class="transform-card"><img src="assets/transform-stockwell.webp" width="946" height="420" alt="Full-width Stockwell history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Stockwell</strong><span>Frequency-dependent timing with absolute phase.</span></figcaption></figure>
-          <figure class="transform-card"><img src="assets/transform-reassigned-stft.webp" width="946" height="420" alt="Full-width frequency-reassigned STFT history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Reassigned STFT</strong><span>Sharper ridges and separated short notes.</span></figcaption></figure>
-          <figure class="transform-card"><img src="assets/transform-synchrosqueezed-cwt.webp" width="946" height="420" alt="Full-width synchrosqueezed wavelet history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Synchrosqueezed CWT</strong><span>Concentrated instantaneous-frequency tracks.</span></figcaption></figure>
-          <figure class="transform-card"><img src="assets/transform-chroma.webp" width="946" height="420" alt="Full-width twelve-row chroma history of the arpeggiated extended-chord piano roll" loading="lazy"><figcaption><strong>Chroma</strong><span>Pitch-class motion independent of octave.</span></figcaption></figure>
-          <figure class="transform-card"><img src="assets/transform-haar-wavelet-packet.webp" width="946" height="420" alt="Full-width Haar wavelet-packet history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Haar wavelet packet</strong><span>Block-local changes and abrupt edges.</span></figcaption></figure>
-          <figure class="transform-card"><img src="assets/transform-smoothed-pseudo-wigner-ville.webp" width="946" height="420" alt="Full-width smoothed pseudo Wigner-Ville history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Smoothed pseudo Wigner–Ville</strong><span>High concentration with controlled cross-terms.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-stft.webp" width="946" height="420" alt="Full-width STFT time-frequency history of the harmonic-resolution piano roll"><figcaption><strong>STFT</strong><span>The standard spectrogram, with evenly spaced FFT bins.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-log-filterbank.webp" width="946" height="420" alt="Full-width log-filterbank history of the harmonic-resolution piano roll" loading="lazy"><figcaption><strong>Log filterbank</strong><span>FFT energy grouped into bands, with the same number of bands per octave.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-mel.webp" width="946" height="420" alt="Full-width Mel-frequency history of the harmonic-resolution piano roll" loading="lazy"><figcaption><strong>Mel</strong><span>Bands on the mel scale. Good for judging overall tonal balance.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-bark.webp" width="946" height="420" alt="Full-width Bark-scale history of the harmonic-resolution piano roll" loading="lazy"><figcaption><strong>Bark</strong><span>Bands that follow the ear's critical bands, which helps when checking for masking.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-erb.webp" width="946" height="420" alt="Full-width ERB-scale history of the harmonic-resolution piano roll" loading="lazy"><figcaption><strong>ERB</strong><span>Bands sized like the ear's auditory filters, with more room for the low end.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-cqt.webp" width="946" height="420" alt="Full-width constant-Q history of the arpeggiated extended-chord piano roll" loading="lazy"><figcaption><strong>CQT</strong><span>A fixed number of bins per octave, so every note gets the same height. Good for chords and tuning.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-vqt.webp" width="946" height="420" alt="Full-width variable-Q history of the arpeggiated extended-chord piano roll" loading="lazy"><figcaption><strong>VQT</strong><span>Like CQT, but with shorter low-frequency windows so bass notes show up sooner.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-morlet-cwt.webp" width="946" height="420" alt="Full-width Morlet wavelet history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Morlet CWT</strong><span>A wavelet view: short windows up high, long windows down low. Onsets stand out.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-morse-cwt.webp" width="946" height="420" alt="Full-width Morse wavelet history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Morse CWT</strong><span>A wavelet whose shape follows the Q scale control, so you can trade time detail for frequency detail.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-stockwell.webp" width="946" height="420" alt="Full-width Stockwell history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Stockwell</strong><span>The window gets shorter as frequency rises, and phase is kept relative to a fixed time origin.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-reassigned-stft.webp" width="946" height="420" alt="Full-width frequency-reassigned STFT history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Reassigned STFT</strong><span>Moves STFT energy to its measured frequency, so lines are thinner and short notes separate.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-synchrosqueezed-cwt.webp" width="946" height="420" alt="Full-width synchrosqueezed wavelet history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Synchrosqueezed CWT</strong><span>Wavelet energy pulled onto each partial's instantaneous frequency, giving thin tracks.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-chroma.webp" width="946" height="420" alt="Full-width twelve-row chroma history of the arpeggiated extended-chord piano roll" loading="lazy"><figcaption><strong>Chroma</strong><span>Twelve rows, one per note name, with all octaves folded together.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-haar-wavelet-packet.webp" width="946" height="420" alt="Full-width Haar wavelet-packet history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Haar wavelet packet</strong><span>Splits the signal into short blocks. Picks up sudden changes and hard edges.</span></figcaption></figure>
+          <figure class="transform-card"><img src="assets/transform-smoothed-pseudo-wigner-ville.webp" width="946" height="420" alt="Full-width smoothed pseudo Wigner-Ville history of the staccato ascending piano roll" loading="lazy"><figcaption><strong>Smoothed pseudo Wigner–Ville</strong><span>Very sharp lines, with smoothing to keep cross-terms down.</span></figcaption></figure>
         </div>
       </section>
 
       <section class="features" aria-label="Key features">
-        <article><h2>Compare 15 methods</h2><p>Move between STFT, CQT, VQT, wavelets, Stockwell, reassigned and synchrosqueezed transforms, chroma, and more.</p></article>
-        <article><h2>Designed for live signals</h2><p>Lock-free audio handoff, bounded queues, overload recovery, and automatic rate limiting keep analysis work away from the audio path.</p></article>
-        <article><h2>Open to inspect and extend</h2><p>The implementation, algorithm notes, tests, and build system are available under Apache-2.0 for research, teaching, and engineering work.</p></article>
+        <article><h2>15 methods</h2><p>Switch between STFT, CQT, VQT, wavelets, Stockwell, reassigned and synchrosqueezed transforms, chroma, and more.</p></article>
+        <article><h2>Safe on a live track</h2><p>Analysis runs off the audio thread. The handoff is lock-free, the queues are bounded, and the plug-in lowers its update rate and recovers on its own if the computer falls behind.</p></article>
+        <article><h2>Open source</h2><p>The code, algorithm notes, tests, and build files are on GitHub under the Apache-2.0 license.</p></article>
       </section>
 
       <section id="examples" class="section-block">
         <div class="section-intro">
           <p class="eyebrow">Examples</p>
-          <h2>Start with a question, then choose a view.</h2>
-          <p>These short examples show how different representations help with sustained harmonics, localized onsets, and pitch-class motion.</p>
+          <h2>Three examples</h2>
+          <p>Each one pairs a short piano part with the transform that shows it best.</p>
         </div>
         <div class="signal-stories">
           <article class="signal-story">
-            <div class="signal-copy"><p class="story-number">01</p><h3>Resolve notes and harmonics</h3><p>Extended chords with low roots, close upper voices, and sustained tails give CQT enough structure to expose octave geometry and partial spacing.</p><p class="story-settings">CQT · 8,192 points · Log display · 48 bins/octave</p></div>
+            <div class="signal-copy"><p class="story-number">01</p><h3>Resolve notes and harmonics</h3><p>Four held extended chords with low roots and close upper voices. CQT gives every semitone the same height, so you can read off the octaves and the spacing between partials.</p><p class="story-settings">CQT · 8,192 points · Log display · 48 bins/octave</p></div>
             <div class="signal-media"><img class="plugin-loop" src="assets/harmonic-resolution.gif" width="1000" height="960" loading="lazy" alt="A synchronized piano-roll playhead and scrolling CQT view for four sustained extended chords"></div>
           </article>
           <article class="signal-story">
-            <div class="signal-copy"><p class="story-number">02</p><h3>Separate onsets and motion</h3><p>Short ascending notes, octave punctuations, and changing durations make localization differences visible instead of hiding them inside sustained energy.</p><p class="story-settings">Reassigned STFT · 8,192 points · Log display</p></div>
+            <div class="signal-copy"><p class="story-number">02</p><h3>See where short notes start</h3><p>A rising line of short notes of different lengths, with octave accents. Reassignment keeps each note's start and end sharp instead of smearing them together.</p><p class="story-settings">Reassigned STFT · 8,192 points · Log display</p></div>
             <div class="signal-media"><img class="plugin-loop" src="assets/transient-localization.gif" width="1000" height="960" loading="lazy" alt="A synchronized piano-roll playhead and scrolling frequency-reassigned STFT for short ascending transients"></div>
           </article>
           <article class="signal-story">
-            <div class="signal-copy"><p class="story-number">03</p><h3>Follow harmonic function</h3><p>Arpeggiated major, minor, predominant, and dominant colors keep pitch classes distinct while moving notes across octaves.</p><p class="story-settings">Chroma · 8,192-point source analysis · 12 pitch classes</p></div>
+            <div class="signal-copy"><p class="story-number">03</p><h3>Follow chord changes</h3><p>Arpeggios through major, minor, predominant, and dominant chords. Chroma folds every octave into twelve rows, so the chord tones line up no matter which octave they are played in.</p><p class="story-settings">Chroma · 8,192-point source analysis · 12 pitch classes</p></div>
             <div class="signal-media"><img class="plugin-loop" src="assets/pitch-class-motion.gif" width="1000" height="960" loading="lazy" alt="A synchronized piano-roll playhead and scrolling Chroma view for four ascending harmonic arpeggios"></div>
           </article>
         </div>
@@ -142,71 +142,71 @@
       <section id="use-cases" class="section-block">
         <div class="section-intro">
           <p class="eyebrow">Use cases</p>
-          <h2>Useful at the bench, in the studio, and in the classroom.</h2>
+          <h2>Who it's for</h2>
         </div>
         <div class="use-case-grid">
-          <article><span>01</span><h3>Research and prototyping</h3><p>Compare time-frequency methods on the same live input before committing to one in a larger analysis pipeline.</p></article>
-          <article><span>02</span><h3>Audio engineering</h3><p>Investigate masking, resonant tails, low-frequency buildup, and transient overlap using a representation suited to the problem.</p></article>
-          <article><span>03</span><h3>Teaching and learning</h3><p>Make the trade-offs between time resolution, frequency resolution, perceptual scales, and pitch-based views visible as audio plays.</p></article>
-          <article><span>04</span><h3>Sound and music analysis</h3><p>Inspect modulation, harmonics, tuning, chords, and pitch-class activity without changing the source signal.</p></article>
+          <article><span>01</span><h3>Research and prototyping</h3><p>Try several time-frequency methods on the same live input before choosing one for your own analysis code.</p></article>
+          <article><span>02</span><h3>Audio engineering</h3><p>Look for masking, ringing resonances, low-end buildup, and overlapping transients, using whichever view shows the problem most clearly.</p></article>
+          <article><span>03</span><h3>Teaching and learning</h3><p>Show how time and frequency resolution trade off, and how perceptual and pitch-based scales differ, while the audio plays.</p></article>
+          <article><span>04</span><h3>Sound and music analysis</h3><p>Check harmonics, tuning, chords, and vibrato or other modulation without changing the signal.</p></article>
         </div>
       </section>
 
       <section id="capabilities" class="section-block">
         <div class="section-intro">
           <p class="eyebrow">Capabilities</p>
-          <h2>Hold the signal steady and change the analysis.</h2>
-          <p>Switch the transform, frequency geometry, resolution, update rate, and calibrated color range without interrupting the source. This makes side-by-side reasoning easier and keeps the comparison grounded in the same material.</p>
+          <h2>What you can adjust</h2>
+          <p>You can change the transform, frequency axis, resolution, scroll speed, and dB range while the audio keeps playing, so every comparison is on the same material.</p>
         </div>
         <div class="capability-grid">
-          <article><span>01</span><h3>Transform depth</h3><p>Move across FFT, filterbank, wavelet, reassigned, quadratic, and pitch-class views.</p></article>
-          <article><span>02</span><h3>Musical geometry</h3><p>Use logarithmic frequency, constant-Q spacing, and a piano ruler to read notes and partials.</p></article>
-          <article><span>03</span><h3>Resolution control</h3><p>Set FFT size up to 8,192 points, band count up to 512, and as many as 48 bins per octave.</p></article>
-          <article><span>04</span><h3>Analysis shaping</h3><p>Adjust speed, cutoff range, Q scale, and VQT gamma for the structure under inspection.</p></article>
-          <article><span>05</span><h3>Calibrated display</h3><p>Choose native, logarithmic, or linear layout with explicit dBFS floor and ceiling controls.</p></article>
-          <article><span>06</span><h3>Live resilience</h3><p>Keep audio bit-exact while bounded queues, overload recovery, and rate limiting protect the UI.</p></article>
+          <article><span>01</span><h3>Transforms</h3><p>FFT, filterbank, wavelet, reassigned, quadratic, and pitch-class methods.</p></article>
+          <article><span>02</span><h3>Musical frequency axis</h3><p>Log frequency, constant-Q spacing, and a piano keyboard along the side for reading notes and partials.</p></article>
+          <article><span>03</span><h3>Resolution</h3><p>FFT size up to 8,192 points, up to 512 bands, and up to 48 bins per octave.</p></article>
+          <article><span>04</span><h3>Analysis settings</h3><p>Speed, cutoff range, Q scale, and VQT gamma.</p></article>
+          <article><span>05</span><h3>Display</h3><p>Native, log, or linear frequency layout, with a dBFS floor and ceiling you set.</p></article>
+          <article><span>06</span><h3>Audio stays untouched</h3><p>The output is bit-identical to the input. If the analysis falls behind, the display slows down, never the audio.</p></article>
         </div>
       </section>
 
       <section id="tutorials" class="section-block">
         <div class="section-intro">
           <p class="eyebrow">Tutorials</p>
-          <h2>See the controls in context.</h2>
-          <p>These short tours keep the source running while the analysis method and display geometry change, so you can connect each control to its effect on the result.</p>
+          <h2>The controls in action</h2>
+          <p>In both clips the music keeps playing while the settings change, so you can see what each control does.</p>
         </div>
         <div class="tutorial-grid">
           <article>
-            <video class="tutorial-media" width="900" height="864" autoplay loop muted playsinline preload="metadata" aria-label="A sleek piano roll with a synchronized playhead above SineSoda while all fifteen transforms and their relevant parameters change">
+            <video class="tutorial-media" width="900" height="864" autoplay loop muted playsinline preload="metadata" aria-label="A piano roll with a synchronized playhead above SineSoda while all fifteen transforms and their relevant parameters change">
               <source src="assets/tutorial-transform-tour.mp4" type="video/mp4">
             </video>
             <p class="tutorial-meta">Transform tour</p>
-            <h3>Move through every transform</h3>
-            <p>Watch the same musical phrase pass through all fifteen views while FFT size, bands, bins per octave, Q scale, and VQT gamma sweep across their full ranges.</p>
+            <h3>All fifteen transforms</h3>
+            <p>One phrase, shown with each transform in turn, while FFT size, bands, bins per octave, Q scale, and VQT gamma move through their full ranges.</p>
           </article>
           <article>
             <img class="tutorial-media" src="assets/tutorial-scale-tour.gif" width="900" height="864" loading="lazy" alt="A synchronized piano roll above SineSoda while Native and Linear domains are dragged vertically and Log remains fixed">
             <p class="tutorial-meta">Scale options</p>
-            <h3>Switch the display geometry</h3>
-            <p>Drag vertically through the scrollable Native and Linear frequency domains, then compare them with the fixed full-range logarithmic view.</p>
+            <h3>Frequency axis options</h3>
+            <p>The Native and Linear axes scroll when you drag up or down. Log always shows the full range.</p>
           </article>
         </div>
       </section>
 
       <section id="install" class="install">
-        <p class="eyebrow">Install in three steps</p>
-        <h2>Download. Copy. Scan.</h2>
+        <p class="eyebrow">Install</p>
+        <h2>Three steps in FL Studio</h2>
         <ol>
           <li>Extract the archive and copy <code>SineSoda.vst3</code> into your user VST3 folder.</li>
           <li>Open <strong>Options → Manage plugins</strong> in FL Studio and select <strong>Find installed plugins</strong>.</li>
           <li>Add SineSoda to a mixer effect slot.</li>
         </ol>
-        <p><a href="https://github.com/djm3622/SineSoda/blob/main/docs/INSTALL.md">Read the complete installation guide →</a></p>
+        <p><a href="https://github.com/djm3622/SineSoda/blob/main/docs/INSTALL.md">Full installation guide →</a></p>
       </section>
     </main>
 
     <footer>
       <span>SineSoda 1.0</span>
-      <nav aria-label="Project links"><a href="https://github.com/djm3622/SineSoda">Source</a><a href="https://github.com/djm3622/SineSoda/releases/latest">All releases</a><a href="https://github.com/djm3622/SineSoda/issues">Issues and ideas</a></nav>
+      <nav aria-label="Project links"><a href="https://github.com/djm3622/SineSoda">Source</a><a href="https://github.com/djm3622/SineSoda/releases/latest">All releases</a><a href="https://github.com/djm3622/SineSoda/issues">Issues</a></nav>
     </footer>
     <script>
       (function () {
@@ -284,6 +284,28 @@
 
         syncFromParent();
         updateControls();
+      }());
+    </script>
+    <script>
+      (function () {
+        // Some browsers skip the autoplay attribute (for example Safari in Low Power Mode).
+        // Start muted tutorial videos when they scroll into view.
+        var videos = document.querySelectorAll('video.tutorial-media');
+        function start(video) {
+          video.muted = true;
+          var attempt = video.play();
+          if (attempt && attempt.catch) attempt.catch(function () {});
+        }
+        if (!('IntersectionObserver' in window)) {
+          videos.forEach(start);
+          return;
+        }
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && entry.target.paused) start(entry.target);
+          });
+        }, { threshold: 0.25 });
+        videos.forEach(function (video) { observer.observe(video); });
       }());
     </script>
   </body>
